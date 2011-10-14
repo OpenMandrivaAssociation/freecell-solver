@@ -6,17 +6,17 @@
 %define staticname %mklibname %{basen} -d -s
 
 
-Name: %{basen}
-Version: 3.4.0
-Release: %mkrel 2
-License: MIT
-Group: Games/Cards
-Source: http://download.berlios.de/fc-solve/%{name}-%{version}.tar.bz2
-Buildroot: %{_tmppath}/freecell-solver-root
-URL: http://fc-solve.berlios.de/
-Requires: %{libname} = %{PACKAGE_VERSION}
-Summary: The Freecell Solver Executable
-BuildRequires: cmake
+Name:		%{basen}
+Summary:	The Freecell Solver Executable
+Version:	3.8.0
+Release:	%mkrel 1
+License:	MIT
+Group:		Games/Cards
+Source:		http://download.berlios.de/fc-solve/%{name}-%{version}.tar.bz2
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+URL:		http://fc-solve.berlios.de/
+Requires:	%{libname} = %{version}-%{release}
+BuildRequires:	cmake
 
 %description
 The Freecell Solver package contains the fc-solve executable which is
@@ -39,7 +39,7 @@ This package is mandatory for the Freecell Solver executable too.
 %package -n %{develname}
 Summary: The Freecell Solver development tools for solving Freecell games
 Group: Games/Cards
-Requires: %{libname} = %{PACKAGE_VERSION}
+Requires: %{libname} = %{version}-%{release}
 
 %description -n %{develname}
 Freecell Solver is a library for automatically solving boards of Freecell and
@@ -52,7 +52,7 @@ Freecell Solver from within your programs.
 %package -n %{staticname}
 Summary: The Freecell Solver static libraries
 Group: Games/Cards
-Requires: %{develname} = %{PACKAGE_VERSION}
+Requires: %{develname} = %{version}-%{release}
 
 %description -n %{staticname}
 Freecell Solver is a library for automatically solving boards of Freecell and
@@ -78,21 +78,17 @@ cp ../../README .
 %make
 
 %install
-rm -rf %buildroot
+rm -rf %{buildroot}
 cd build
-%{makeinstall_std}
+%makeinstall_std
 
 rm -f %buildroot/usr/bin/make-microsoft-freecell-board
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libfreecell-solver.so*
-/usr/share/freecell-solver/presetrc
-/usr/share/freecell-solver/presets/*
+%{_datadir}/freecell-solver/presetrc
+%{_datadir}/freecell-solver/presets/*
 
 %files -n %{staticname}
 %defattr(-,root,root)
@@ -100,23 +96,23 @@ rm -f %buildroot/usr/bin/make-microsoft-freecell-board
 
 %files
 %defattr(-,root,root)
-/usr/bin/fc-solve
-/usr/bin/freecell-solver-fc-pro-range-solve
-/usr/bin/freecell-solver-multi-thread-solve
-/usr/bin/freecell-solver-range-parallel-solve
-/usr/bin/make-aisleriot-freecell-board
-/usr/bin/make-gnome-freecell-board
-/usr/bin/make_pysol_freecell_board.py
-/usr/bin/pi-make-microsoft-freecell-board
+%{_bindir}/fc-solve
+%{_bindir}/freecell-solver-fc-pro-range-solve
+%{_bindir}/freecell-solver-multi-thread-solve
+%{_bindir}/freecell-solver-range-parallel-solve
+%{_bindir}/make-aisleriot-freecell-board
+%{_bindir}/make-gnome-freecell-board
+%{_bindir}/make_pysol_freecell_board.py
+%{_bindir}/pi-make-microsoft-freecell-board
 %{_mandir}/*/*
 %{_docdir}/*
 
 %files -n %{develname}
 %defattr(-,root,root)
-/usr/include/freecell-solver/*.h
-/usr/bin/freecell-solver-config
+%{_includedir}/freecell-solver/*.h
+%{_bindir}/freecell-solver-config
 %{_libdir}/pkgconfig/*.pc
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
