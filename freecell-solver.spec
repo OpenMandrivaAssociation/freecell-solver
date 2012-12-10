@@ -116,3 +116,14 @@ rm -f %buildroot/usr/bin/make-microsoft-freecell-board
 %clean
 rm -rf %{buildroot}
 
+
+
+%changelog
+* Fri Oct 14 2011 Andrey Bondrov <abondrov@mandriva.org> 3.8.0-1mdv2012.0
++ Revision: 704677
+- New version 3.8.0
+
+* Sun Dec 19 2010 Shlomi Fish <shlomif@mandriva.org> 3.4.0-2mdv2011.0
++ Revision: 623096
+- import freecell-solver
+
