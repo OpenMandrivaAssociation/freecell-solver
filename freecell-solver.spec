@@ -9,7 +9,7 @@
 Name:		%{basen}
 Summary:	The Freecell Solver Executable
 Version:	3.8.0
-Release:	%mkrel 1
+Release:	2
 License:	MIT
 Group:		Games/Cards
 Source:		http://download.berlios.de/fc-solve/%{name}-%{version}.tar.bz2
