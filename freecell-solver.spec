@@ -1,22 +1,43 @@
-%define basen freecell-solver
-%define libname_orig lib%{basen}
 %define major 0
-%define libname %mklibname %{basen} %{major}
-%define develname %mklibname %{basen} -d
-%define staticname %mklibname %{basen} -d -s
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+%define staticname %mklibname %{name} -d -s
 
-
-Name:		%{basen}
-Summary:	The Freecell Solver Executable
-Version:	3.8.0
-Release:	2
+Name:		freecell-solver
+Summary:	Library and application for solving Freecell card games
+Version:	5.0.0
+Release:	1
 License:	MIT
 Group:		Games/Cards
-Source:		http://download.berlios.de/fc-solve/%{name}-%{version}.tar.bz2
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-URL:		http://fc-solve.berlios.de/
+Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
+URL:		http://fc-solve.shlomifish.org/
 Requires:	%{libname} = %{version}-%{release}
 BuildRequires:	cmake
+BuildRequires:	gcc
+BuildRequires:	gcc-c++
+BuildRequires:	gmp-devel
+BuildRequires:	gperf
+BuildRequires:	make
+BuildRequires:	perl(autodie)
+BuildRequires:	perl(lib)
+BuildRequires:	perl(Carp)
+BuildRequires:	perl(Cwd)
+BuildRequires:	perl(Data::Dumper)
+BuildRequires:	perl(Digest::SHA)
+BuildRequires:	perl(File::Path)
+BuildRequires:	perl(File::Spec)
+BuildRequires:	perl(lib)
+BuildRequires:	perl(List::MoreUtils)
+BuildRequires:	perl(parent)
+BuildRequires:	perl(Path::Tiny)
+BuildRequires:	perl(strict)
+BuildRequires:	perl(Template)
+BuildRequires:	perl(warnings)
+BuildRequires:	perl-devel
+BuildRequires:	python-random2
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	python3dist(six)
+Requires:	%{libname}%{?_isa} = %{version}-%{release}
 
 %description
 The Freecell Solver package contains the fc-solve executable which is
@@ -74,7 +95,7 @@ cp ../../README .
 
 
 %build
-%cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=12
+%cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=12 -DFCS_WITH_TEST_SUITE=OFF
 %make
 
 %install
@@ -100,9 +121,11 @@ rm -f %buildroot/usr/bin/make-microsoft-freecell-board
 %{_bindir}/freecell-solver-fc-pro-range-solve
 %{_bindir}/freecell-solver-multi-thread-solve
 %{_bindir}/freecell-solver-range-parallel-solve
-%{_bindir}/make-aisleriot-freecell-board
-%{_bindir}/make-gnome-freecell-board
 %{_bindir}/make_pysol_freecell_board.py
+%{_bindir}/fc_solve_find_index_s2ints.py
+%{_bindir}/find-freecell-deal-index.py
+%{_bindir}/gen-multiple-pysol-layouts
+%{_bindir}/transpose-freecell-board.py
 %{_bindir}/pi-make-microsoft-freecell-board
 %{_mandir}/*/*
 %{_docdir}/*
@@ -110,20 +133,4 @@ rm -f %buildroot/usr/bin/make-microsoft-freecell-board
 %files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/freecell-solver/*.h
-%{_bindir}/freecell-solver-config
 %{_libdir}/pkgconfig/*.pc
-
-%clean
-rm -rf %{buildroot}
-
-
-
-%changelog
-* Fri Oct 14 2011 Andrey Bondrov <abondrov@mandriva.org> 3.8.0-1mdv2012.0
-+ Revision: 704677
-- New version 3.8.0
-
-* Sun Dec 19 2010 Shlomi Fish <shlomif@mandriva.org> 3.4.0-2mdv2011.0
-+ Revision: 623096
-- import freecell-solver
-
