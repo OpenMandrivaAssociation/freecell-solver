@@ -6,10 +6,11 @@
 Name:		freecell-solver
 Summary:	Library and application for solving Freecell card games
 Version:	5.0.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Games/Cards
 Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
+Patch0:		freecell-solver-5.0-no-Lusrlib.patch
 URL:		http://fc-solve.shlomifish.org/
 Requires:	%{libname} = %{version}-%{release}
 BuildRequires:	cmake
@@ -82,7 +83,7 @@ similar variants of card Solitaire. This package contains the static libraries.
 It is not generally required.
 
 %prep
-%setup -q
+%autosetup -p1
 # This is a hack that is meant to make sure the README of the board
 # generation programs resides inside the board_gen sub-dir of the 
 # documentation directory.
