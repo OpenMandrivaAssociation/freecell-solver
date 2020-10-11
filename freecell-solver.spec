@@ -35,6 +35,7 @@ BuildRequires:	perl(strict)
 BuildRequires:	perl(Template)
 BuildRequires:	perl(warnings)
 BuildRequires:	perl-devel
+BuildRequires:  perl-Moo
 BuildRequires:	python-random2
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	python3dist(six)
