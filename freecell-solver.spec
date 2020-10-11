@@ -10,7 +10,7 @@ Release:	1
 License:	MIT
 Group:		Games/Cards
 Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
-Patch0:		freecell-solver-5.0-no-Lusrlib.patch
+#Patch0:		freecell-solver-5.0-no-Lusrlib.patch
 URL:		http://fc-solve.shlomifish.org/
 Requires:	%{libname} = %{version}-%{release}
 BuildRequires:	cmake
