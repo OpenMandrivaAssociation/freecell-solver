@@ -10,7 +10,6 @@ Release:	1
 License:	MIT
 Group:		Games/Cards
 Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
-#Patch0:		freecell-solver-5.0-no-Lusrlib.patch
 URL:		http://fc-solve.shlomifish.org/
 Requires:	%{libname} = %{version}-%{release}
 BuildRequires:	cmake
@@ -100,12 +99,12 @@ cp ../../README .
 
 %build
 %cmake -DLOCALE_INSTALL_DIR=%{_datadir}/locale -DLIB_INSTALL_DIR=%{_libdir} -DMAX_NUM_FREECELLS=8 -DMAX_NUM_STACKS=12 -DFCS_WITH_TEST_SUITE=OFF
-%make
+%make_build
 
 %install
 rm -rf %{buildroot}
 cd build
-%makeinstall_std
+%make_install
 
 rm -f %buildroot/usr/bin/make-microsoft-freecell-board
 
@@ -131,6 +130,8 @@ rm -f %buildroot/usr/bin/make-microsoft-freecell-board
 %{_bindir}/gen-multiple-pysol-layouts
 %{_bindir}/transpose-freecell-board.py
 %{_bindir}/pi-make-microsoft-freecell-board
+%{_bindir}/dbm-fc-solver
+%{_bindir}/depth-dbm-fc-solver
 %{_mandir}/*/*
 %{_docdir}/*
 
