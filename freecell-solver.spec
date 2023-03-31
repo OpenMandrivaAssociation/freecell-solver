@@ -6,7 +6,7 @@
 Name:		freecell-solver
 Summary:	Library and application for solving Freecell card games
 Version:	6.2.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Games/Cards
 Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
