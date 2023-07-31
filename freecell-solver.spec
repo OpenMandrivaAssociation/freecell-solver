@@ -10,6 +10,7 @@ Release:	1
 License:	MIT
 Group:		Games/Cards
 Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
+Source1:	https://github.com/shlomif/rinutils/releases/download/0.10.2/rinutils-0.10.2.tar.xz
 URL:		http://fc-solve.shlomifish.org/
 Requires:	%{libname} = %{version}-%{release}
 BuildRequires:	cmake
@@ -37,7 +38,7 @@ BuildRequires:	perl-devel
 BuildRequires:  perl-Moo
 BuildRequires:	python-random2
 BuildRequires:	pkgconfig(python3)
-BuildRequires:	python3dist(six)
+BuildRequires:	python%{pyver}dist(six)
 BuildRequires:  pysol
 BuildRequires:  python-pysol-cards
 Requires:	%{libname}%{?_isa} = %{version}-%{release}
@@ -85,7 +86,8 @@ similar variants of card Solitaire. This package contains the static libraries.
 It is not generally required.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -a1
+mv rinutils-* rinutils
 # This is a hack that is meant to make sure the README of the board
 # generation programs resides inside the board_gen sub-dir of the 
 # documentation directory.
