@@ -11,7 +11,7 @@ License:	MIT
 Group:		Games/Cards
 Source0:	http://fc-solve.shlomifish.org/downloads/fc-solve/%{name}-%{version}.tar.xz
 Source1:	https://github.com/shlomif/rinutils/releases/download/0.10.2/rinutils-0.10.2.tar.xz
-URL:		http://fc-solve.shlomifish.org/
+URL:		https://fc-solve.shlomifish.org/
 Requires:	%{libname} = %{version}-%{release}
 BuildRequires:	cmake
 BuildRequires:	gcc
