@@ -5,7 +5,7 @@
 
 Name:		freecell-solver
 Summary:	Library and application for solving Freecell card games
-Version:	6.12.0
+Version:	6.16.0
 Release:	1
 License:	MIT
 Group:		Games/Cards
